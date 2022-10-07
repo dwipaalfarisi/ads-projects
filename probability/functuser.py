@@ -18,3 +18,16 @@ def prob(A):
 def conditional(proposition, given):
     """Probability of A conditioned on given."""
     return prob(proposition[given])
+
+def correlation(dataset, threshold):
+    '''
+    Get columns from the correlation matrix with a certain threshold value
+    '''
+    col_corr = set()
+    corr_matrix = dataset.corr()
+    for i in range(len(corr_matrix.columns)):
+        for j in range(i):
+            if (corr_matrix.iloc[i, j]) > threshold: 
+                colname = corr_matrix.columns[i] # get the columns name
+                col_corr.add(colname)
+    return col_corr
