@@ -23,11 +23,11 @@ def correlation(dataset, threshold):
     '''
     Get columns from the correlation matrix with a certain threshold value
     '''
-    col_corr = set()
+    col_corr = set()  # Set of all the names of correlated columns
     corr_matrix = dataset.corr()
     for i in range(len(corr_matrix.columns)):
         for j in range(i):
-            if (corr_matrix.iloc[i, j]) > threshold: 
-                colname = corr_matrix.columns[i] # get the columns name
+            if abs(corr_matrix.iloc[i, j]) > threshold: # we are interested in absolute coeff value
+                colname = corr_matrix.columns[i]  # getting the name of column
                 col_corr.add(colname)
     return col_corr
