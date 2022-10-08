@@ -20,9 +20,6 @@ def conditional(proposition, given):
     return prob(proposition[given])
 
 def correlation(dataset, threshold):
-    '''
-    Get columns from the correlation matrix with a certain threshold value
-    '''
     col_corr = set()  # Set of all the names of correlated columns
     corr_matrix = dataset.corr()
     for i in range(len(corr_matrix.columns)):
