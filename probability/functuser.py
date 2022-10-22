@@ -1,3 +1,7 @@
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as font_manager
+from matplotlib import rcParams
+
 def print_format(data, format):
     '''
     Format a number's digit
@@ -31,9 +35,7 @@ def correlation(dataset, threshold):
     return col_corr
 
 def load_roboto():
-    # import matplotlib.font_manager as font_manager
-    # from matplotlib import rcParams
-    font_path = 'C:/Users/ASUS/AppData/Local/Microsoft/Windows/Fonts/Roboto-Regular.ttf'  # Your font path goes here
+    font_path = 'C:/Users/ASUS/AppData/Local/Microsoft/Windows/Fonts/Roboto-Regular.ttf' 
     font_manager.fontManager.addfont(font_path)
     prop = font_manager.FontProperties(fname=font_path)
 
