@@ -20,6 +20,7 @@ def conditional(proposition, given):
     return prob(proposition[given])
 
 def correlation(dataset, threshold):
+    """returns column names with according to given threshold."""
     col_corr = set()  # Set of all the names of correlated columns
     corr_matrix = dataset.corr()
     for i in range(len(corr_matrix.columns)):
@@ -28,3 +29,14 @@ def correlation(dataset, threshold):
                 colname = corr_matrix.columns[i]  # getting the name of column
                 col_corr.add(colname)
     return col_corr
+
+def load_roboto():
+    # import matplotlib.font_manager as font_manager
+    # from matplotlib import rcParams
+    font_path = 'C:/Users/ASUS/AppData/Local/Microsoft/Windows/Fonts/Roboto-Regular.ttf'  # Your font path goes here
+    font_manager.fontManager.addfont(font_path)
+    prop = font_manager.FontProperties(fname=font_path)
+
+    rcParams['font.family'] = 'sans-serif'
+    rcParams['font.sans-serif'] = prop.get_name()
+    return rcParams['font.sans-serif']
