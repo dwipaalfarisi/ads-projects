@@ -42,3 +42,12 @@ def load_roboto():
     rcParams['font.family'] = 'sans-serif'
     rcParams['font.sans-serif'] = prop.get_name()
     return rcParams['font.sans-serif']
+
+def load_roboto_var():
+    font_path = 'C:/Users/ASUS/AppData/Local/Microsoft/Windows/Fonts/RobotoFlex-VariableFont_GRAD,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght.ttf'
+    font_manager.fontManager.addfont(font_path)
+    prop = font_manager.FontProperties(fname=font_path)
+
+    rcParams['font.family'] = 'sans-serif'
+    rcParams['font.sans-serif'] = prop.get_name()
+    return rcParams['font.sans-serif']
