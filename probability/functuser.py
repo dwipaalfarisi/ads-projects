@@ -34,6 +34,21 @@ def correlation(dataset, threshold):
                 col_corr.add(colname)
     return col_corr
 
+def get_corr_cols(df, threshold):
+    """returns correlation column names by the given threshold."""
+    cols_corr = set()
+    corr_matrix = df.corr()
+    for i in range(len(corr_matrix)):
+        if abs(corr_matrix.iloc[2, i]) > threshold:
+            colsname = corr_matrix.columns[i]
+            if colsname == 'charges':
+                pass
+            else:
+                cols_corr.add(colsname)
+        else: 
+            pass   
+    return cols_corr
+
 def load_roboto():
     font_path = 'C:/Users/ASUS/AppData/Local/Microsoft/Windows/Fonts/Roboto-Regular.ttf' 
     font_manager.fontManager.addfont(font_path)
@@ -86,3 +101,29 @@ def chance(df, condition: int, high_or_low: str):
     except (RuntimeError, TypeError, NameError, AttributeError):
         pass
 
+def get_bmi_more_less(dummy_df):
+    bmiM25 = []
+    for index, row in dummy_df.iterrows():
+        if row.bmi > 25:
+            bmiM25.append(1)
+        elif row.bmi <= 25:
+            bmiM25.append(0)
+
+    bmiL25 = []
+    for index1, row1 in dummy_df.iterrows():
+        if row1.bmi < 25:
+            bmiL25.append(1)
+        elif row.bmi >= 25:
+            bmiL25.append(0)
+    dummy_df['bmi_m25'] = bmiM25
+    dummy_df['bmi_l25'] = bmiL25
+
+    return dummy_df
+
+def get_bmi_status(df):
+    bmi_status = []
+    for index, row in df.iterrows():
+        bmi_status.append(bmi_category(row['bmi']))
+    df['bmi_status'] = bmi_status
+    
+    return df
