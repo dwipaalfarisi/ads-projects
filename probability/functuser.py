@@ -75,3 +75,14 @@ def df_without_outlier(df, col: str):
 
 	return df
 
+def chance(df, condition: int, high_or_low: str):
+    try: 
+        if high_or_low.lower() == 'high':
+            return df.iloc[condition-1, 0]
+        elif high_or_low.lower() == 'low':
+            return df.iloc[condition-1, 1]
+        else:
+            pass
+    except (RuntimeError, TypeError, NameError, AttributeError):
+        pass
+
