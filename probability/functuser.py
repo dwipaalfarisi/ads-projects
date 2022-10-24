@@ -51,3 +51,27 @@ def load_roboto_var():
     rcParams['font.family'] = 'sans-serif'
     rcParams['font.sans-serif'] = prop.get_name()
     return rcParams['font.sans-serif']
+
+def bmi_category(bmi):
+    """Return bmi category"""
+    if bmi < 18.5:
+        return 'underweight'
+    elif bmi >= 18.5 and bmi <25:
+        return 'healthy weight'
+    elif bmi >= 25 and bmi < 30:
+        return 'overweight'
+    elif bmi > 30:
+        return 'obesity'
+
+def df_without_outlier(df, col: str):
+	q1 = df[col].quantile(0.25)
+	q3 = df[col].quantile(0.75)
+	iqr = q3 - q1 
+	lower_lim = q1 - 1.5 * iqr
+	upper_lim = q3 + 1.5 * iqr
+	outlier_low = (df[col] < lower_lim)
+	outlier_up = (df[col] > upper_lim)
+	df = (df[~(outlier_low | outlier_up)])
+
+	return df
+
