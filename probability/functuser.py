@@ -82,16 +82,16 @@ def df_without_outlier(df, col: str):
     '''
     Handle outliers on a given column of a dataframe and return df without outliers
     '''
-	q1 = df[col].quantile(0.25)
-	q3 = df[col].quantile(0.75)
-	iqr = q3 - q1 
-	lower_lim = q1 - 1.5 * iqr
-	upper_lim = q3 + 1.5 * iqr
-	outlier_low = (df[col] < lower_lim)
-	outlier_up = (df[col] > upper_lim)
-	df = (df[~(outlier_low | outlier_up)])
+    q1 = df[col].quantile(0.25)
+    q3 = df[col].quantile(0.75)
+    iqr = q3 - q1 
+    lower_lim = q1 - 1.5 * iqr
+    upper_lim = q3 + 1.5 * iqr
+    outlier_low = (df[col] < lower_lim)
+    outlier_up = (df[col] > upper_lim)
+    df = (df[~(outlier_low | outlier_up)])
 
-	return df
+    return df
 
 def chance(df, condition: int, high_or_low: str):
     try: 
