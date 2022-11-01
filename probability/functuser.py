@@ -79,6 +79,9 @@ def bmi_category(bmi):
         return 'obesity'
 
 def df_without_outlier(df, col: str):
+    '''
+    Handle outliers on a given column of a dataframe and return df without outliers
+    '''
 	q1 = df[col].quantile(0.25)
 	q3 = df[col].quantile(0.75)
 	iqr = q3 - q1 
@@ -121,6 +124,7 @@ def get_bmi_more_less(dummy_df):
     return dummy_df
 
 def get_bmi_status(df):
+    '''Using bmi_category function to deter bmi_status and return df with a new colun (bmi_status)'''
     bmi_status = []
     for index, row in df.iterrows():
         bmi_status.append(bmi_category(row['bmi']))
